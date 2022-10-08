@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -83,9 +84,54 @@ public class ServerThread implements Runnable {
                             }
                         }
                         System.out.println("Cipher text is " + cipher);
-                        //kq.set(cipher.toUpperCase());
                         cipher.toUpperCase();
                         out.println(cipher);
+                        // dem ky tu xuat hien nhieu nhat
+                        int counter[] = new int[256];
+                        ArrayList vt = new ArrayList();
+                        int len = cipher.length();
+
+                        int max = 0;
+                        int so = 0, cout = 0;
+                        String chuoi2 = cipher.replaceAll(" ", "");
+                        System.out.println("chuoi: " + chuoi2);
+
+                        int len1 = chuoi2.length();
+
+                        for (int i = 0; i < len1; i++) {
+                            //System.out.print(counter[plaint.charAt(i)]++ + "\t");
+                            counter[chuoi2.charAt(i)]++;
+                        }
+
+                        char array[] = new char[chuoi2.length()];  // tạo mảng mới có độ dài bằng chuổi nhập
+
+                        for (int i = 0; i < len1; i++) {
+
+                            array[i] = chuoi2.charAt(i); // gán mảng giá trị của mảng a = ký tự chuỗi chuoi
+
+                            int flagg = 0; // tạo cờ
+                            for (int j = 0; j <= i; j++) {
+                                if (chuoi2.charAt(i) == array[j]) {
+                                    flagg++;
+                                }
+                            }
+                            if (flag == 1) {
+
+                                if (counter[chuoi2.charAt(i)] >= max) {
+
+                                    max = counter[chuoi2.charAt(i)];
+                                    so = i;
+                                }
+
+                            }
+                        }
+
+                        char kytu = chuoi2.charAt(so);
+                        System.out.println("");
+                        System.out.println("Ky tu xuat hien nhieu nhất: " + kytu);
+                        out.println(kytu);
+                        System.out.println("So lan xuat hien: " + max);
+                        out.println(max);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Key phải là chữ!");
                     }
@@ -145,7 +191,6 @@ public class ServerThread implements Runnable {
             } catch (IOException e) {
             }
         }
-
     }
 
 }

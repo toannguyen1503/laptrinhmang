@@ -189,7 +189,7 @@ public class frmClient extends javax.swing.JFrame {
         String khoa = txtkhoa.getText();
         String kq = "";
         String kytu = "";
-        String slxh = "";
+        String max = "";
         int so = 1;
         try {
             Socket socket = new Socket("localhost", 1025);
@@ -202,7 +202,10 @@ public class frmClient extends javax.swing.JFrame {
             // out.write(kq);
             kq = in.nextLine().trim();
             txtketqua.setText(kq);
-
+            kytu = in.nextLine().trim();
+            txtkytu.setText(kytu);
+            max = in.nextLine();
+            txtsolan.setText(max);
         } catch (Exception e) {
             try {
                 if (socket != null) {
