@@ -97,12 +97,10 @@ public class ServerThread implements Runnable {
                         System.out.println("chuoi: " + chuoi2);
 
                         int len1 = chuoi2.length();
-
                         for (int i = 0; i < len1; i++) {
                             //System.out.print(counter[plaint.charAt(i)]++ + "\t");
                             counter[chuoi2.charAt(i)]++;
                         }
-
                         char array[] = new char[chuoi2.length()];  // tạo mảng mới có độ dài bằng chuổi nhập
 
                         for (int i = 0; i < len1; i++) {
@@ -122,7 +120,6 @@ public class ServerThread implements Runnable {
                                     max = counter[chuoi2.charAt(i)];
                                     so = i;
                                 }
-
                             }
                         }
 
